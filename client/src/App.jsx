@@ -5,6 +5,9 @@ import Profile from "./pages/Profile";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Header from "./componenets/Header";
+import PrivateRoute from "./componenets/PrivateRoute";
+import CreateListing from "./pages/CreateListing";
+import UpdateListing from "./pages/UpdateListing";
 
 export default function App() {
   return (
@@ -16,8 +19,14 @@ export default function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/" element={<Home />} />
+        <Route element={<PrivateRoute />}>
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/create-listing' element={<CreateListing />} />
+          <Route
+            path='/update-listing/:listingId'
+            element={<UpdateListing />}
+          />
+        </Route>
       </Routes>
     </BrowserRouter>
   )
